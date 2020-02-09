@@ -1,6 +1,6 @@
-const list = document.querySelector('#book-list ul');
+const list = document.querySelector('#supply-list ul');
 
-// delete books
+// delete items
 list.addEventListener('click', function(e){
     if(e.target.className == 'delete'){
         const li = e.target.parentElement;
@@ -8,55 +8,107 @@ list.addEventListener('click', function(e){
     }
 });
 
-// add books
-const addForm = document.forms['add-book'];
+// add items
+const addForm = document.forms['add-item'];
 
 addForm.addEventListener('submit', function(e){
     e.preventDefault();
     const value = addForm.querySelector('input[type="text"]').value;
+    document.getElementById('my_text').value = "";
     
 // create elements
 const li = document.createElement('li');
-const bookName = document.createElement('span');
+const schoolItem = document.createElement('span');
 const deleteBtn = document.createElement('span');
 
 // add content
 deleteBtn.textContent = 'delete';
-bookName.textContent = value;
+schoolItem.textContent = value;
 
 // add classes
-bookName.classList.add('name');
+li.setAttribute('draggable', true);
+li.classList.add('column');
+schoolItem.classList.add('item');
 deleteBtn.classList.add('delete');
 
 // append to Dom
-li.appendChild(bookName);
+li.appendChild(schoolItem);
 li.appendChild(deleteBtn);
 list.appendChild(li);
-
 });
 
-// hide books
-const hideBox = document.querySelector('#hide');
-hideBox.addEventListener('change', function(e){
-    if(hideBox.checked){
-        list.style.display = "none";
-    } else {
-        list.style.display = "initial";
-    }
-});
-
-// filter books
-const searchBar = document.forms['search-books'].querySelector('input');
+// filter items
+const searchBar = document.forms['search-items'].querySelector('input');
 searchBar.addEventListener('keyup', function(e){
     const term = e.target.value.toLowerCase();
-    const books = list.getElementsByTagName('li');
-    Array.from(books).forEach(function (book){
-        const title = book.firstElementChild.textContent;
+    const supplies = list.getElementsByTagName('li');
+    Array.from(supplies).forEach(function (supply){
+        const title = supply.firstElementChild.textContent;
         if(title.toLocaleLowerCase().indexOf(term) != -1){
-            book.style.display = "block";
+            supply.style.display = "block";
         } else{
-            book.style.display = "none";
+            supply.style.display = "none";
         }
     });
 })
+
+// Drag and Drop
+var dragElement = null;
+
+// drag and drop effects
+
+$("ul").on("dragstart","li",function(event){
+    $(this).css("opacity", 0.4);
+    dragElement = $(this);
+    event.originalEvent.dataTransfer.effectAllowed = 'move';
+    event.originalEvent.dataTransfer.setData('text/html', $(this).html());
+});
+
+$("ul").on("dragenter","li",function(){
+    $(this).addClass("over");
+});
+
+$("ul").on("dragleave","li",function(){
+    $(this).removeClass("over");
+});
+
+
+$("ul").on("dragover","li",function(event){
+    if (event.preventDefault) {
+        event.preventDefault(); // Necessary. Allows us to drop.
+    }
+  event.originalEvent.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+  return false;
+});
+
+// drag and drop handle
+
+$("ul").on("drop","li",function(event){
+  if (event.stopPropagation) {
+    event.stopPropagation(); 
+  }
+
+  if (dragElement != $(this)) {
+    $(dragElement).html($(this).html())
+    dragElement.innerHTML = this.innerHTML;
+    this.innerHTML = event.originalEvent.dataTransfer.getData('text/html');
+  }
+  return false;
+});
+
+$("ul").on("dragend","li",function(){
+    $("ul li").removeClass("over");
+    $(this).css("opacity", 1);
+});
+
+// delete list
+
+function deleteList() {
+    var list = document.getElementById("columns");
+    while (list.hasChildNodes()) {
+        list.removeChild(list.firstChild);
+    }
+}
+
+
 

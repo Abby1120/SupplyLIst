@@ -2,49 +2,39 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link href="style.css" rel="stylesheet" />
-    <title>Summer Reading List Vanilla JS</title>
+	<link href="style.css" rel="stylesheet" />
+    <title>School Supply List</title>
   </head>
   <body>
   	<div id="wrapper">
 	    <header>
 	    	<div id="page-banner">
-	    		<h1 class="title">Summer Reading List</h1>
-          <p>Grade 10</p>
-          <form id="search-books">
-            <input type="text" placeholder="Search books..." />
+	    		<h1 class="title">Create A Supply List For Your Class</h1>
+          <p>Grade 4</p>
+          <form id="search-items">
+            <input type="text" placeholder="Search Items..." />
           </form>
 	    	</div>
 	    </header>
-	    <div id="book-list">
-	    	<h2 class="title">Chores to Read</h2>
-	    	<ul>
-	    		<li>
-	    			<span class="name">Fahrenheit 451 by Ray Bradbury</span>
+	    <div id="supply-list">
+	    	<h2 class="title">Items</h2>
+	    	<ul id="columns">
+	    		<li class="column" draggable="true">
+	    			<span class="item">12 Glue Sticks (example item)</span>
 	    			<span class="delete">delete</span>
-	    		</li>
-	    		<li>
-	    			<span class="name">1984 by George Orwell</span>
-	    			<span class="delete">delete</span>
-	    		</li>
-	    		<li>
-	    			<span class="name">The Catcher in the Rye by J.D. Salinger</span>
-	    			<span class="delete">delete</span>
-	    		</li>
-	    		<li>
-	    			<span class="name">Slaughterhouse-Five by Kurt Vonnegut</span>
-	    			<span class="delete">delete</span>
-	    		</li>
+				</li>
 	    	</ul>
 	    </div>
-	    <form id="add-book">
-			<input type="checkbox" id="hide"/>
-			<label for="hide">Hide all books</label>
-			<input type="text" placeholder="Book by Author" />
-	    	<button>Add</button>
-	    </form>
+	    <form id="add-item">
+			<input id="my_text" type="text" placeholder="Add Items" />
+			<button id="addbtn">Add Item</button>
+		</form>
 
-    </div>
+		<button id="deletebtn"  onclick="deleteList()">Delete List</button>
+		
+
+	</div>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

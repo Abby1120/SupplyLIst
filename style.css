@@ -1,6 +1,6 @@
 body{
     font-family: Tahoma;
-    color: #002d72;
+    color: #2f86d8;
     letter-spacing: 1px;
 }
 
@@ -13,7 +13,7 @@ h1, h2{
     max-width: 960px;
     margin: 20px auto;
     border-radius: 6px;
-    box-shadow: 0px 1px 6px rgba(0,0,0,0.2);
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.4);
     box-sizing: border-box;
     padding: 0 0 20px;
     overflow: hidden;
@@ -44,22 +44,22 @@ h1, h2{
     color: #444;
 }
 
-#book-list, #add-book, #tabbed-content{
+#supply-list, #add-item, #tabbed-content{
     margin: 30px;
 }
 
-#book-list ul, #tabbed-content ul{
+#supply-list ul{
     list-style-type: none;
     padding: 0;
 }
 
-#book-list li{
+#supply-list li{
     padding: 20px;
     border-left: 5px solid #ddd;
     margin: 20px 10px;
 }
 
-#book-list li:hover{
+#supply-list li:hover{
     border-color: #ff5910;
 }
 
@@ -76,68 +76,71 @@ h1, h2{
     background: #333;
 }
 
-#add-book{
-    width: 400px;
+#add-item{
+    width: 500px;
     margin: 0 auto;
 }
 
-#add-book input{
+#add-item input{
     display: block;
-    margin: 20px 0;
     padding: 10px;
     border: 1px solid #ccc;
     font-size: 16px;
     border-radius: 4px 0 0 4px;
     box-sizing: border-box;
-    width: 300px;
+    width: 375px;
     float: left;
 }
 
-#add-book button{
-    border: 1px solid #ff5910;
-    background: #ff5910;
+#addbtn {
+    border: 1px solid green;
+    background: green;
     padding: 10px 20px;
     font-size: 16px;
-    display: inline-block;
     margin: 0;
-    border-radius: 4px 4px 4px 4px;
+    border-radius: 0 4px 4px 0;
     cursor: pointer;
-    width: 100px;
-    float: left;
-    margin: 20px 0;
+    width: 125px;
     border-left: 0;
     color: white;
 }
 
-#add-book:after{
-    content: '';
-    display: block;
-    clear: both;
+#addbtn:hover {
+    background: rgb(160, 160, 160);
+    color: green;
 }
 
-#add-book #hide{
-    width: 30px;
-}
-
-#add-book label{
-    line-height: 52px;
-}
-/*
-#tabbed-content li{
+#deletebtn {
+    border: 10px solid yellow;
+    background: yellow;
+    color: black;
+    font-size: 16px;
     display: inline-block;
-    padding: 10px 14px;
-    background: #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
+    margin: 10px 40px;
     cursor: pointer;
-    margin-right: 10px;
 }
-#tabbed-content .tab{
-    display: none;
-    border: 1px solid #ddd;
-    padding: 0 10px;
-    border-radius: 4px;
+
+#deletebtn:hover {
+    color: yellow;
+    background: black;
+    border: 10px solid black;
 }
-#tabbed-content .tab.active{
-    display: block;
-}
-*/
+
+/* dnd settings */
+
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+  }
+
+  .column.over {
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+  }
+  
+
