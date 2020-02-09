@@ -75,9 +75,9 @@ $("ul").on("dragleave","li",function(){
 
 $("ul").on("dragover","li",function(event){
     if (event.preventDefault) {
-        event.preventDefault(); // Necessary. Allows us to drop.
+        event.preventDefault(); 
     }
-  event.originalEvent.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+  event.originalEvent.dataTransfer.dropEffect = 'move';
   return false;
 });
 
